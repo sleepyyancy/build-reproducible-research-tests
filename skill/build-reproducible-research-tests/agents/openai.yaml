@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reproducible Research Tests"
+  short_description: "Plan, run, verify, and package reproducible STEM tests"
+  default_prompt: "Use $build-reproducible-research-tests to design and execute a reproducible research test with traceable evidence."

@@ -1,0 +1,13 @@
+# Generated or local-only artifacts; review before using.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+*.tmp
+*.partial
+*.lock
+logs/*.log
+
+# Add test-specific large, licensed, sensitive, or regenerable artifacts only
+# after recording their retention class in the artifact manifest.

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "run_id": "{{RUN_ID}}",
+  "stage": "{{STAGE}}",
+  "case_id": "{{CASE_ID_OR_NULL}}",
+  "started_at": "{{ISO8601}}",
+  "finished_at": "{{ISO8601}}",
+  "status": "{{complete|failed|partial}}",
+  "entry_point": "{{RELATIVE_SCRIPT_OR_EXTERNAL_PROCESS}}",
+  "resolved_config": "{{RELATIVE_CONFIG_PATH}}",
+  "input_fingerprint": "{{FINGERPRINT}}",
+  "code_fingerprint": "{{FINGERPRINT}}",
+  "environment_record": "records/environment.json",
+  "log": "{{RELATIVE_LOG_PATH}}",
+  "outputs": ["{{RELATIVE_OUTPUT_PATH}}"],
+  "notes": "{{NOTES}}"
+}
