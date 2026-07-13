@@ -159,6 +159,7 @@ Before declaring completion:
 - [references/verification-and-acceptance.md](references/verification-and-acceptance.md): independent checks, failure semantics, and acceptance records.
 - [references/scientific-writing.md](references/scientific-writing.md): evidence-based Chinese and general scientific writing requirements.
 - [references/example-adaptations.md](references/example-adaptations.md): hypothetical adaptations across research domains.
+- [references/quickstart-zh-CN.md](references/quickstart-zh-CN.md): Chinese quick-start guide for the core workflow and bundled utilities.
 - `assets/workspace-template/`: templates copied into a new test workspace.
 - `scripts/init_test_workspace.py`: creates a non-destructive workspace.
 - `scripts/capture_environment.py`: records environment facts without modifying it.

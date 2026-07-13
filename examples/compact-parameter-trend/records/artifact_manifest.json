@@ -1,19 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-13T16:39:33.046235+00:00",
+  "generated_at": "2026-07-13T17:16:46.111100+00:00",
   "workspace_name": "compact-parameter-trend",
   "hash_algorithm": "sha256",
-  "artifact_count": 9,
-  "total_size_bytes": 8853,
+  "artifact_count": 10,
+  "total_size_bytes": 9612,
   "artifacts": [
     {
       "path": "README.md",
       "role": "workspace-document",
       "publication_class": "publish-review",
-      "size_bytes": 715,
-      "modified_ns": 1783960760306896546,
+      "size_bytes": 771,
+      "modified_ns": 1783962990621146225,
       "is_symlink": false,
-      "sha256": "6ea5f52982f81b7cd3757b67ff06616b91b455ec01dbaa569b432d2c089187a9",
+      "sha256": "1173947a2f92a3d530531dc16e6ad61e95056a76944b0addbec3d3bfc9eeb372",
+      "hash_status": "complete"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "role": "workspace-document",
+      "publication_class": "publish-review",
+      "size_bytes": 703,
+      "modified_ns": 1783962990621146225,
+      "is_symlink": false,
+      "sha256": "d036dbfbbc393d25fa06fc0c31a3f0c8e4f7ade48752bdaf1f81c1ba45850cfb",
       "hash_status": "complete"
     },
     {
@@ -21,7 +31,7 @@
       "role": "workspace-document",
       "publication_class": "publish-review",
       "size_bytes": 575,
-      "modified_ns": 1783960760306896546,
+      "modified_ns": 1783962990621146225,
       "is_symlink": false,
       "sha256": "13bb1224ed1386b824025ee203164556fdf40f9e822c292b19d255da443948d8",
       "hash_status": "complete"
@@ -31,7 +41,7 @@
       "role": "source",
       "publication_class": "local-only",
       "size_bytes": 111,
-      "modified_ns": 1783960760306896546,
+      "modified_ns": 1783962990621146225,
       "is_symlink": false,
       "sha256": "c2fc66a3b8da11f87d1dfccf6191ab803f82131f98835a4003e039ee1caed2e9",
       "hash_status": "complete"
@@ -41,7 +51,7 @@
       "role": "workspace-document",
       "publication_class": "publish-review",
       "size_bytes": 426,
-      "modified_ns": 1783960760306896546,
+      "modified_ns": 1783962990621146225,
       "is_symlink": false,
       "sha256": "4854de7260441972707645ac7fc2841eebe5284b04d757248d66c28d48fbc014",
       "hash_status": "complete"
@@ -51,7 +61,7 @@
       "role": "record",
       "publication_class": "publish-review",
       "size_bytes": 436,
-      "modified_ns": 1783960766077871315,
+      "modified_ns": 1783962995670138759,
       "is_symlink": false,
       "sha256": "f266db72ebf9100c87664430431ba9337c6362796fbe9be4b4ed7b7c701978f7",
       "hash_status": "complete"
@@ -61,7 +71,7 @@
       "role": "final-result",
       "publication_class": "publish",
       "size_bytes": 111,
-      "modified_ns": 1783960766077871315,
+      "modified_ns": 1783962995670138759,
       "is_symlink": false,
       "sha256": "b49555f08bb7688ae65de1b7385546acae5aef33ac3dcee41d9bcc4fcb65f7bd",
       "hash_status": "complete"
@@ -71,7 +81,7 @@
       "role": "code",
       "publication_class": "publish",
       "size_bytes": 4541,
-      "modified_ns": 1783960760306896546,
+      "modified_ns": 1783962990621146225,
       "is_symlink": false,
       "sha256": "91880aea84694c1ed74650bb86b7ea664bb1975b5716549d35f6cc54e72568d6",
       "hash_status": "complete"
@@ -81,7 +91,7 @@
       "role": "workspace-document",
       "publication_class": "publish-review",
       "size_bytes": 694,
-      "modified_ns": 1783960760306896546,
+      "modified_ns": 1783962990621146225,
       "is_symlink": false,
       "sha256": "33f4ecdb67eab455d5ed15a081c96a87415cf2ceda4538c4c2bbd8de173610b1",
       "hash_status": "complete"
@@ -91,7 +101,7 @@
       "role": "workspace-document",
       "publication_class": "publish-review",
       "size_bytes": 1244,
-      "modified_ns": 1783960760307896541,
+      "modified_ns": 1783962990622146223,
       "is_symlink": false,
       "sha256": "829f1e47221c06cfd74e5095b124af85bd7025a08bda0a20453633d253408e25",
       "hash_status": "complete"

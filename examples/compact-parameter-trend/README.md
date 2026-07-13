@@ -1,5 +1,7 @@
 # Compact Parameter-Trend Example
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 This worked example tests whether a measured response is strictly increasing over four ordered parameter values.
 
 ## Reproduce

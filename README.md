@@ -1,5 +1,9 @@
 # Build Reproducible Research Tests
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
+> 中文简介：这是一个面向理工科科研测试的独立Codex Skill，用于建立计划、执行、验证、文档和产物之间可追溯、可复现的完整链路。完整中文说明见[README.zh-CN.md](README.zh-CN.md)。
+
 A self-contained Codex Skill for designing, executing, verifying, documenting, and packaging reproducible STEM research tests.
 
 It is intended for scientific comparisons, simulation and model validation, physical experiments, observational-data analysis, parameter sweeps, sensitivity studies, and research workflow reviews. The Skill turns a research question into a traceable package linking inputs, configuration, execution records, intermediate transformations, results, figures, verification, and evidence-supported conclusions.
