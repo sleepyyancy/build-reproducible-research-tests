@@ -44,6 +44,12 @@ ROLE_BY_TOP_DIRECTORY = {
     "report": ("reader-facing-report", "publish"),
 }
 
+ROLE_BY_ROOT_FILE = {
+    "README.md": ("reproduction-guide", "publish"),
+    "test_spec.md": ("test-specification", "publish"),
+    "evidence_ledger.md": ("evidence-ledger", "publish-review"),
+}
+
 
 def should_exclude(relative_path: Path) -> bool:
     if any(part in EXCLUDED_DIRECTORY_NAMES for part in relative_path.parts[:-1]):
@@ -60,6 +66,8 @@ def sha256_file(path: Path) -> str:
 
 
 def artifact_role(relative_path: Path) -> tuple[str, str]:
+    if len(relative_path.parts) == 1 and relative_path.name in ROLE_BY_ROOT_FILE:
+        return ROLE_BY_ROOT_FILE[relative_path.name]
     top = relative_path.parts[0] if relative_path.parts else ""
     return ROLE_BY_TOP_DIRECTORY.get(top, ("workspace-document", "publish-review"))
 

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "test_title": "Parameter-Trend Evidence Package",
+  "enabled_optional_components": [
+    "inputs"
+  ],
+  "required_files": [
+    "README.md",
+    "README.zh-CN.md",
+    "test_spec.md",
+    "evidence_ledger.md",
+    "inputs/measurements.csv",
+    "scripts/analyze_and_verify.py",
+    "results/trend_summary.csv",
+    "records/workspace_contract.json",
+    "records/run_record.json",
+    "records/verification_report.md",
+    "records/artifact_manifest.json"
+  ],
+  "required_nonempty_directories": [
+    "inputs",
+    "scripts",
+    "results",
+    "records"
+  ],
+  "artifact_manifest_required": true,
+  "environment_record_required": false,
+  "note": "This example has no figures, report, config, intermediate, or log directory."
+}

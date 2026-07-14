@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-07-14T07:19:13.877035+00:00",
+  "workspace_contract_sha256": "179712d6724e8f783d0a3568d3e94f1f0f1b57c95494a90959428f531e47f31e",
+  "scope": "declared package structure and recorded artifact identity; domain checks remain test-specific",
+  "status": "PASS",
+  "failure_count": 0,
+  "warning_count": 0,
+  "checks": [
+    {
+      "check": "file:README.md",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:README.zh-CN.md",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:test_spec.md",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:evidence_ledger.md",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:inputs/measurements.csv",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:scripts/analyze_and_verify.py",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:results/trend_summary.csv",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:records/workspace_contract.json",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:records/run_record.json",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:records/verification_report.md",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "file:records/artifact_manifest.json",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "directory:inputs",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "directory:scripts",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "directory:results",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "directory:records",
+      "status": "PASS",
+      "detail": "present and nonempty"
+    },
+    {
+      "check": "unresolved_placeholders",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "check": "json_records_parse",
+      "status": "PASS",
+      "detail": "all JSON records parse"
+    },
+    {
+      "check": "manifest_consistency",
+      "status": "PASS",
+      "detail": "recorded artifacts match"
+    }
+  ]
+}

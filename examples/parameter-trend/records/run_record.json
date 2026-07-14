@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_id": "parameter-trend-analysis",
+  "started_at": "2026-07-14T07:19:13.790937+00:00",
+  "finished_at": "2026-07-14T07:19:13.791484+00:00",
+  "status": "complete",
+  "entry_point": "scripts/analyze_and_verify.py",
+  "input": {
+    "path": "inputs/measurements.csv",
+    "sha256": "c2fc66a3b8da11f87d1dfccf6191ab803f82131f98835a4003e039ee1caed2e9"
+  },
+  "code_sha256": "00e31860164924cd2159ae92b648320a0f13c2a2f0b28968ca32e84e36183153",
+  "termination_evidence": "process exit 0 and records/verification_report.md",
+  "outputs": [
+    "results/trend_summary.csv",
+    "records/verification_report.md"
+  ]
+}
