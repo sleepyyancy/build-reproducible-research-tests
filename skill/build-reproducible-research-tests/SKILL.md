@@ -1,168 +1,141 @@
 ---
 name: build-reproducible-research-tests
-description: Design, execute, verify, document, and package reproducible STEM research tests. Use when a task involves a scientific comparison, simulation or model validation, experiment, observational-data analysis, parameter sweep, regression study, or other multi-step technical test that needs an isolated workspace, explicit hypotheses and metrics, traceable inputs and outputs, persistent planning files, independent verification, and reusable artifacts. Also use when reviewing or standardizing an existing research-test workflow. Do not use for a one-off calculation or explanation that does not create or evaluate test artifacts.
+description: Build and audit evidence chains for multi-stage STEM tests that create reusable artifacts. Use when designing, executing, repairing, or packaging a scientific comparison, simulation or model validation, physical experiment, observational-data study, parameter sweep, sensitivity study, or benchmark whose claims must trace to identified inputs, frozen settings, run records, machine-readable results, independent verification, and reproduction instructions. Do not use for conceptual explanations, read-only result summaries, one-off calculations, ordinary code changes, or plotting-only requests that do not create or standardize a research-test package.
 ---
 
 # Build Reproducible Research Tests
 
 ## Purpose
 
-Turn a research question into an auditable test package. Preserve the chain from evidence and decisions to inputs, execution records, numerical results, figures, conclusions, and reproduction instructions.
+Turn a scientific test into an auditable evidence package. Preserve this chain:
 
-This skill is self-contained. Do not require planning-with-files, a plotting skill, or any other skill to apply its core workflow.
+```text
+source identity → test specification → frozen settings → execution record
+→ derived artifacts → machine-readable result → independent verification
+→ evidence ledger → scientific claim
+```
 
-## Non-negotiable rules
+Use only the controls needed to support the intended claim. Add structure when it protects provenance, interpretation, reruns, or release safety; do not create empty directories or documents for appearance.
 
-1. Read the applicable project instructions before acting.
-2. Base every scientific claim on inspected evidence. If a missing fact can change the design, metric, interpretation, or safety of the work, stop and ask the user. Do not silently invent it.
-3. Never delete or overwrite important existing files without explicit approval. Treat source inputs as read-only.
-4. Never install, remove, or upgrade packages or modify a conda/virtual environment without the user reviewing and approving that action.
-5. Establish an isolated test workspace. Do not mix generated artifacts into source-data or production-code directories.
-6. Keep `task_plan.md`, `findings.md`, and `progress.md` in every nontrivial test workspace. Update them during the work, not only at the end.
-7. Preserve the scripts and configuration that generated results. A result without a generation path is incomplete.
-8. Separate operational verification from scientific acceptance. A run can be technically valid while its scientific hypothesis fails.
-9. Do not publish, commit, push, upload, or contact external systems unless the user explicitly authorizes that stage.
+## Required evidence
 
-## Choose a workflow size
+Every completed test package must provide:
 
-Use the smallest profile that preserves the scientific claim:
+- a precise research question, comparison scope, data semantics, metrics, and acceptance status;
+- authoritative input identity and the settings that affect results;
+- retained scripts or an exact external procedure that regenerates derived results;
+- machine-readable results separated from reader-facing interpretation;
+- an execution record sufficient to identify completed, failed, reused, and partial artifacts;
+- verification that does more than reread the final summary;
+- an evidence ledger connecting each substantive conclusion to checked evidence;
+- reproduction instructions that match the actual package.
 
-- **Compact:** one or two inputs, one analysis script, small outputs, no expensive solver. Keep the three planning files, test specification, README, final result, and verification record.
-- **Standard:** multiple stages or cases, generated intermediate data, figures, or reusable results. Use the full directory structure and all workflow gates.
-- **Extended:** expensive computation or physical experiments, large data, restarts, parallel jobs, regulated/sensitive inputs, or publication-bound results. Add environment capture, checksums, run manifests, checkpoint/resume validation, independent recalculation, and publishability audit.
+Treat original inputs as read-only. Do not silently delete, overwrite, install dependencies, alter environments, or publish artifacts. Obtain explicit authorization when an action changes those states.
 
-Record the chosen profile and any omitted steps in `task_plan.md`. Omit a step only when its absence cannot weaken the intended claim.
+## Build the evidence chain
 
-## Standard workflow
+### 1. Define the test contract
 
-### 1. Inspect and recover context
+Complete `test_spec.md` before expensive execution. Fix the object under test, reference or baseline, authoritative state or iteration, controlled and measured variables, units, ordering conventions, preprocessing, alignment, aggregation, metrics, edge cases, cases or sampling, thresholds, and excluded claims.
 
-- Read project instructions, relevant plans, code, data headers, existing results, and prior logs.
-- If a test workspace already exists, read its three planning files before continuing.
-- Identify user-owned changes and preserve them.
-- Record confirmed facts in `findings.md`; label unresolved items as `待确认` rather than guessing.
+Ask the user when a missing fact can change scientific meaning or acceptance. Mark absent thresholds as `NOT_DEFINED`; do not invent a quality judgment.
 
-### 2. Write the test contract
+Read [references/workflow-and-gates.md](references/workflow-and-gates.md) for the contract and evidence gates. Apply only the relevant checks from [references/scenario-branches.md](references/scenario-branches.md).
 
-Create or complete `test_spec.md` before expensive or state-changing execution. Specify:
+### 2. Establish artifact responsibilities
 
-- research question and falsifiable expectation;
-- object under test and reference/baseline;
-- controlled, independent, and measured variables;
-- units, coordinate/index conventions, material or group semantics, and sign conventions;
-- input identity and provenance;
-- alignment, preprocessing, aggregation, and normalization rules;
-- primary metrics and any thresholds;
-- expected artifacts and result location;
-- known limitations and decisions still required.
+Keep the test package isolated from source data and production code. Use project naming conventions when they exist.
 
-Use [references/workflow-and-gates.md](references/workflow-and-gates.md) for the contract and execution gates. Read [references/scenario-branches.md](references/scenario-branches.md) and apply only the relevant branch.
-
-### 3. Resolve material uncertainty
-
-Ask the user when an unknown could change what is compared, how data are aligned, which output is authoritative, whether a result is acceptable, or whether an external/state-changing action is permitted. Bundle related questions and explain their consequences.
-
-Continue without asking only for reversible implementation details that are discoverable from the workspace and cannot change the scientific meaning. Record material assumptions explicitly and seek confirmation before execution.
-
-### 4. Establish the isolated workspace
-
-For new tests, use `scripts/init_test_workspace.py` after editing its top-level configuration. It creates the standard directories and copies templates without overwriting existing files.
-
-Default responsibilities:
+The minimum package is:
 
 ```text
 test_workspace/
-├── task_plan.md
-├── findings.md
-├── progress.md
-├── test_spec.md
 ├── README.md
-├── inputs/          # immutable copies, links, or input manifests
-├── config/          # parameters and frozen run configuration
-├── scripts/         # prepare, run, analyze, plot, verify
-├── intermediate/    # reusable derived data and checkpoints
-├── results/         # compact machine-readable final results
-├── figures/         # previews and final exports
-├── logs/            # stdout, stderr, solver and job logs
-├── records/         # environment, manifests, run and verification records
-└── report/          # reader-facing scientific writing, when requested
+├── test_spec.md
+├── evidence_ledger.md
+├── scripts/       # generation and verification entry points
+├── results/       # compact machine-readable final results
+└── records/       # contract, run, manifest, and verification records
 ```
 
-Number or date test directories only when required by the host project. Never assume a numbering convention without checking existing practice.
+Add `inputs/`, `config/`, `intermediate/`, `figures/`, `logs/`, or `report/` only when the test needs those responsibilities. Existing projects may use different names; preserve clear boundaries and record the mapping in README.
 
-### 5. Build a traceable execution chain
+For a new package, edit the top-level configuration in `scripts/init_test_workspace.py` and run it. The initializer creates only declared components, refuses to overwrite an existing workspace, and writes `records/workspace_contract.json` for later validation.
 
-Prefer separate stage scripts when preparation, execution, analysis, plotting, and verification have different failure modes. Use descriptive stage names such as `prepare_*`, `run_*`, `analyze_*`, `plot_*`, and `verify_*`.
+### 3. Preserve identity and provenance
 
-At every stage:
+Identify each source by content hash, immutable version, retrieval record, specimen/instrument identity, or another domain-appropriate fingerprint. Freeze every result-affecting setting, including defaults. Record code, model, geometry, calibration, random seed, precision, and relevant environment when they can change the result.
 
-- declare configuration in one visible place consistent with project style;
-- validate inputs before computation;
-- write outputs only inside the test workspace;
-- capture the command or entry point, configuration, timestamps, status, and logs;
-- fail loudly on missing columns, shape changes, non-finite values, duplicate identifiers, unit conflicts, or invalid mappings;
-- make resume/reuse depend on a complete fingerprint of inputs, code, model/calibration, configuration, and relevant environment—not merely file existence;
-- write atomic or checkpointed outputs when interruption would leave misleading partial files.
+Resume or reuse an artifact only when its complete result-affecting fingerprint matches and completeness is verified. File existence, timestamp, or row count alone is insufficient.
 
-Read [references/provenance-and-artifacts.md](references/provenance-and-artifacts.md) before designing manifests, resume logic, or large-file retention.
+Read [references/provenance-and-artifacts.md](references/provenance-and-artifacts.md) when designing fingerprints, manifests, retention, large-data handling, or release classes.
 
-### 6. Verify independently
+### 4. Generate traceable artifacts
 
-Do not treat “script exited with code 0” as sufficient verification. Apply checks proportional to the claim:
+Separate stages when they have different inputs, costs, failure modes, or rerun needs. Each executed stage must record its entry point or procedure, resolved settings, input identity, start and finish time, status, log or termination evidence, and outputs.
 
-- structural: expected files, schemas, row counts, keys, units, and finite values;
-- identity: hashes or equivalent fingerprints for inputs and configurations;
-- semantic: coordinate/index alignment, group mappings, conservation laws, invariants, and boundary conditions;
-- numerical: independently recompute selected metrics from lower-level outputs;
-- regression: compare against a known reference when one exists;
-- visual: render previews and inspect labels, clipping, overlap, missing glyphs, misleading axes, and grayscale/color accessibility;
-- documentation: confirm README commands, paths, artifact descriptions, and conclusions match the actual workspace.
+Reject missing fields, incompatible units, duplicate identifiers, invalid mappings, unexpected shapes, non-finite values, and incomplete cases before they enter final results. Mark partial outputs explicitly so they cannot be mistaken for completed evidence.
 
-Use `scripts/build_artifact_manifest.py`, `scripts/validate_test_workspace.py`, and `scripts/audit_publishability.py` after editing their top-level configuration. Read [references/verification-and-acceptance.md](references/verification-and-acceptance.md) for verification depth and PASS/FAIL semantics.
+Derive tables, figures, and prose from retained machine-readable results. When figures support a claim, verify their source data, labels, units, direction, and rendered readability; keep chart-design choices outside the evidence record unless they affect interpretation.
 
-### 7. Interpret evidence
+### 5. Verify independently
 
-Report measured outcomes separately from interpretation. Preserve unexpected or negative results when the run is valid. State:
+Match verification depth to claim risk and regeneration cost. Cover the applicable layers:
 
-- whether execution verification passed;
-- whether the scientific acceptance criterion passed, failed, or was not defined;
-- which evidence supports each conclusion;
-- which limitations are demonstrated by evidence;
-- which questions remain unresolved.
+- structural: artifacts, schemas, dimensions, keys, finite values, case coverage, and termination evidence;
+- identity: inputs, settings, code/model/instrument state, and reused-output fingerprints;
+- semantic: units, coordinate/index/channel order, mapping, normalization, groups, and boundary conditions;
+- numerical: recompute selected metrics from lower-level artifacts or check an independent invariant;
+- consistency: machine-readable results, figures, README, and scientific prose agree.
 
-Do not replace absent thresholds with an invented judgment. If no acceptance criterion was agreed, provide descriptive results only.
+Report two separate outcomes:
 
-### 8. Document for two audiences
+- `Operational verification`: whether the intended test ran on the intended evidence and produced valid artifacts;
+- `Scientific acceptance`: `PASS`, `FAIL`, or `NOT_DEFINED` against the declared criterion.
 
-`README.md` is a technical reproduction guide. It may name files, scripts, commands, environment requirements, inputs, outputs, and known operational constraints.
+Read [references/verification-and-acceptance.md](references/verification-and-acceptance.md) before designing the verifier or interpreting failure states.
 
-A scientific report in `report/` addresses its stated readers. It must stand alone, explain necessary scientific context, and omit internal conversations, user instructions, edit history, absolute paths, script locations, and other backstage details.
+### 6. Connect evidence to claims
 
-Read [references/scientific-writing.md](references/scientific-writing.md) whenever the user asks for a report, paper section, analysis narrative, or other reader-facing prose.
+Use `evidence_ledger.md` to assign evidence IDs, record how each item was checked, and list the claims it supports. Keep measured values, derived results, interpretation, recommendations, and unresolved questions distinguishable.
 
-### 9. Complete and hand off
+Preserve verified negative and null results. State only limitations demonstrated by evidence. If the user requests a report or paper section, read [references/scientific-writing.md](references/scientific-writing.md).
 
-Before declaring completion:
+### 7. Package and validate
 
-- regenerate final results from the retained scripts or document why a costly run was not repeated;
-- run the workspace validator and record its output;
-- run the publishability audit before any proposed Git/GitHub/package handoff;
-- update all three planning files;
-- summarize what was created, what was verified, the scientific outcome, and any remaining decisions;
-- ask before updating project-level README or handoff documents if the project instructions require consent.
+README must state the test scope, statuses, required environment or apparatus, real reproduction sequence, input identity, output meanings, verification method, and known constraints.
+
+Edit the top-level configuration before using the bundled utilities:
+
+- `scripts/build_artifact_manifest.py`: inventory artifacts and compute streaming hashes;
+- `scripts/capture_environment.py`: record reproducibility-relevant environment facts without changing them;
+- `scripts/validate_test_workspace.py`: validate declared package contents and recorded artifact identity;
+- `scripts/audit_publishability.py`: report caches, large files, absolute paths, and likely sensitive content without deleting anything.
+
+Run the package validator after final artifacts are generated. Run the publication audit only when release is proposed, and publish only after explicit authorization.
+
+## Evidence controls by risk
+
+Always keep the minimum package and an independent verification record. Add the following only when relevant:
+
+- checksums and artifact manifests for external, mutable, reused, or release-bound inputs and outputs;
+- environment capture for software-sensitive or hardware-sensitive computation;
+- logs and termination records for solvers, instruments, batch jobs, or expensive inference;
+- checkpoints and full resume fingerprints for interruptible work;
+- retained intermediates when regeneration is expensive or transformation error must be isolated;
+- independent repeats, calibration and uncertainty records for physical measurements;
+- release classification and publishability audit for shared packages.
+
+Record omitted high-risk controls and why their absence does not weaken the intended claim.
 
 ## Resource map
 
-- [references/workflow-and-gates.md](references/workflow-and-gates.md): test contract, execution authorization, progress recording, and completion gate.
-- [references/scenario-branches.md](references/scenario-branches.md): computational, experimental, observational, parameter-study, and visualization branches.
-- [references/provenance-and-artifacts.md](references/provenance-and-artifacts.md): input identity, manifests, large files, intermediates, resume safety, and publishing boundaries.
-- [references/verification-and-acceptance.md](references/verification-and-acceptance.md): independent checks, failure semantics, and acceptance records.
-- [references/scientific-writing.md](references/scientific-writing.md): evidence-based Chinese and general scientific writing requirements.
+- [references/workflow-and-gates.md](references/workflow-and-gates.md): test contract and evidence gates.
+- [references/scenario-branches.md](references/scenario-branches.md): domain-specific provenance and verification checks.
+- [references/provenance-and-artifacts.md](references/provenance-and-artifacts.md): identity, manifests, reuse, retention, large data, and release classes.
+- [references/verification-and-acceptance.md](references/verification-and-acceptance.md): verification depth, independence, thresholds, and outcome states.
+- [references/scientific-writing.md](references/scientific-writing.md): evidence-based scientific writing and Chinese-language requirements.
 - [references/example-adaptations.md](references/example-adaptations.md): hypothetical adaptations across research domains.
-- [references/quickstart-zh-CN.md](references/quickstart-zh-CN.md): Chinese quick-start guide for the core workflow and bundled utilities.
-- `assets/workspace-template/`: templates copied into a new test workspace.
-- `scripts/init_test_workspace.py`: creates a non-destructive workspace.
-- `scripts/capture_environment.py`: records environment facts without modifying it.
-- `scripts/build_artifact_manifest.py`: inventories artifacts and computes hashes.
-- `scripts/validate_test_workspace.py`: checks structure, records, placeholders, and artifact consistency.
-- `scripts/audit_publishability.py`: reports caches, large files, absolute paths, likely secrets, and unsuitable publishable artifacts without deleting anything.
+- [references/quickstart-zh-CN.md](references/quickstart-zh-CN.md): concise Chinese usage guide.
+- `assets/workspace-template/`: minimal evidence-package templates.
+- `scripts/`: non-destructive initialization, provenance, validation, environment, and release-audit utilities.

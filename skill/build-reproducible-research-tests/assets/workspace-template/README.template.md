@@ -10,45 +10,39 @@
 - Scientific acceptance: {{PASS|FAIL|NOT_DEFINED|IN_PROGRESS}}
 - Last verified: {{DATE}}
 
-## Workspace contents
+## Evidence package
 
-| Location | Responsibility |
-|---|---|
-| `inputs/` | Immutable inputs or source manifests |
-| `config/` | Frozen run configuration |
-| `scripts/` | Preparation, execution, analysis, plotting, and verification |
-| `intermediate/` | Reusable derived data and checkpoints |
-| `results/` | Compact machine-readable final results |
-| `figures/` | Preview and final figures |
-| `logs/` | Execution logs |
-| `records/` | Environment, run, manifest, and verification records |
-| `report/` | Reader-facing scientific report when requested |
+| Location | Responsibility | Required for this test? |
+|---|---|---|
+| `test_spec.md` | Scientific question, semantics, metrics, cases, and limits | Yes |
+| `evidence_ledger.md` | Verified evidence linked to scientific claims | Yes |
+| `scripts/` | Result-generation and independent-verification entry points | Yes |
+| `results/` | Concise machine-readable final results | Yes |
+| `records/` | Workspace contract, run records, manifest, and verification | Yes |
+| {{OPTIONAL_LOCATION}} | {{RESPONSIBILITY}} | {{YES_NO}} |
 
 ## Requirements
 
-- Approved environment: {{ENVIRONMENT_NAME_OR_DESCRIPTION}}
+- Approved environment or apparatus: {{ENVIRONMENT_OR_APPARATUS}}
 - Required software/data access: {{REQUIREMENTS}}
-- Resource estimate: {{RUNTIME_MEMORY_STORAGE}}
-
-Do not modify the environment automatically. If a dependency is missing, stop and obtain approval before installation or environment changes.
+- Expected runtime, memory, storage, or experimental duration: {{RESOURCE_ESTIMATE}}
 
 ## Reproduce
 
-Run from the workspace root in this order:
+Run from the package root in this order:
 
 ```text
-{{PREPARE_ENTRY_POINT}}
-{{RUN_ENTRY_POINT}}
-{{ANALYZE_ENTRY_POINT}}
-{{PLOT_ENTRY_POINT_OR_NOT_APPLICABLE}}
+{{ENTRY_POINT_1}}
+{{ENTRY_POINT_2}}
+{{ENTRY_POINT_3}}
 {{VERIFY_ENTRY_POINT}}
 ```
 
-The scripts use the configuration documented in `config/`. Update the documented configuration surface before starting a new run; do not edit generated results manually.
+Result-affecting settings are recorded at {{CONFIGURATION_SURFACE_OR_RECORD}}.
 
 ## Inputs
 
-| Input | Meaning | Identity/provenance record |
+| Input | Scientific meaning | Identity/provenance record |
 |---|---|---|
 | {{INPUT}} | {{MEANING}} | {{RECORD}} |
 

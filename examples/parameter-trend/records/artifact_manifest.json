@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-14T07:19:13.835770+00:00",
+  "workspace_name": "parameter-trend",
+  "hash_algorithm": "sha256",
+  "artifact_count": 10,
+  "total_size_bytes": 14574,
+  "artifacts": [
+    {
+      "path": "README.md",
+      "role": "reproduction-guide",
+      "publication_class": "publish",
+      "size_bytes": 1399,
+      "modified_ns": 1784013430126826479,
+      "is_symlink": false,
+      "sha256": "c6e313faabb9bc48eb78d9af7d560e2c16c9ab95116a41b7c0929be18554a047",
+      "hash_status": "complete"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "role": "workspace-document",
+      "publication_class": "publish-review",
+      "size_bytes": 1223,
+      "modified_ns": 1784013430302826377,
+      "is_symlink": false,
+      "sha256": "5dd82c67a60312bfdb739b260bb481cfede52baee6f5e2e386eee81c2c7355e0",
+      "hash_status": "complete"
+    },
+    {
+      "path": "evidence_ledger.md",
+      "role": "evidence-ledger",
+      "publication_class": "publish-review",
+      "size_bytes": 988,
+      "modified_ns": 1784013430662826168,
+      "is_symlink": false,
+      "sha256": "242461fc66bb30e90f48de0c2d46d37e38b68c34cc5d0e8bc0387c8d052834f1",
+      "hash_status": "complete"
+    },
+    {
+      "path": "inputs/measurements.csv",
+      "role": "source",
+      "publication_class": "local-only",
+      "size_bytes": 111,
+      "modified_ns": 1784013249975845764,
+      "is_symlink": false,
+      "sha256": "c2fc66a3b8da11f87d1dfccf6191ab803f82131f98835a4003e039ee1caed2e9",
+      "hash_status": "complete"
+    },
+    {
+      "path": "records/run_record.json",
+      "role": "record",
+      "publication_class": "publish-review",
+      "size_bytes": 637,
+      "modified_ns": 1784013553790790413,
+      "is_symlink": false,
+      "sha256": "29ce6c0fed5ca3979ddbbaa907bc6c944854ca941f1443d1974d4ee881bef770",
+      "hash_status": "complete"
+    },
+    {
+      "path": "records/verification_report.md",
+      "role": "record",
+      "publication_class": "publish-review",
+      "size_bytes": 500,
+      "modified_ns": 1784013553790790413,
+      "is_symlink": false,
+      "sha256": "95e412605cf328466c06cd30b091d7207ab1da861f33d497518018eb153638d9",
+      "hash_status": "complete"
+    },
+    {
+      "path": "records/workspace_contract.json",
+      "role": "record",
+      "publication_class": "publish-review",
+      "size_bytes": 758,
+      "modified_ns": 1784013430838826066,
+      "is_symlink": false,
+      "sha256": "b6ecc69de89f2b46c8ab14f0d585f3c714d9854e9b5b2005227b0a3e4dcb78a0",
+      "hash_status": "complete"
+    },
+    {
+      "path": "results/trend_summary.csv",
+      "role": "final-result",
+      "publication_class": "publish",
+      "size_bytes": 111,
+      "modified_ns": 1784013553790790413,
+      "is_symlink": false,
+      "sha256": "b49555f08bb7688ae65de1b7385546acae5aef33ac3dcee41d9bcc4fcb65f7bd",
+      "hash_status": "complete"
+    },
+    {
+      "path": "scripts/analyze_and_verify.py",
+      "role": "code",
+      "publication_class": "publish",
+      "size_bytes": 7004,
+      "modified_ns": 1784013431019825961,
+      "is_symlink": false,
+      "sha256": "00e31860164924cd2159ae92b648320a0f13c2a2f0b28968ca32e84e36183153",
+      "hash_status": "complete"
+    },
+    {
+      "path": "test_spec.md",
+      "role": "test-specification",
+      "publication_class": "publish",
+      "size_bytes": 1843,
+      "modified_ns": 1784013430479826274,
+      "is_symlink": false,
+      "sha256": "3275621932779b777372271a295b19447faf281c071e463dbe7ccf818c254c10",
+      "hash_status": "complete"
+    }
+  ]
+}

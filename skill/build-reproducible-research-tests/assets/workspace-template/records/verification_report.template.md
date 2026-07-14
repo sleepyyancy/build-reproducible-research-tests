@@ -4,6 +4,7 @@
 - Workspace fingerprint: {{FINGERPRINT}}
 - Verification time: {{ISO8601}}
 - Verifier: {{SCRIPT_OR_METHOD}}
+- Inputs/settings verified: {{IDENTITY_SCOPE}}
 
 ## Checks
 | Level | Check | Expected | Actual | Status | Evidence |
@@ -12,6 +13,9 @@
 | Semantic | {{CHECK}} | {{EXPECTED}} | {{ACTUAL}} | {{PASS|FAIL|WARN}} | {{EVIDENCE}} |
 | Numerical | {{CHECK}} | {{EXPECTED}} | {{ACTUAL}} | {{PASS|FAIL|WARN}} | {{EVIDENCE}} |
 | Documentation | {{CHECK}} | {{EXPECTED}} | {{ACTUAL}} | {{PASS|FAIL|WARN}} | {{EVIDENCE}} |
+
+## Independent checks
+- {{METRIC_RECOMPUTATION_OR_INVARIANT}}
 
 ## Outcomes
 - Operational verification: {{PASS|FAIL}}

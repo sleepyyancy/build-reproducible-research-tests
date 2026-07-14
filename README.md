@@ -2,32 +2,54 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-> 中文简介：这是一个面向理工科科研测试的独立Codex Skill，用于建立计划、执行、验证、文档和产物之间可追溯、可复现的完整链路。完整中文说明见[README.zh-CN.md](README.zh-CN.md)。
+> 中文简介：这是一个面向理工科科研测试的独立Codex Skill，用于把权威输入、实际设置、运行记录、机器可读结果、独立验证和科学结论组织成可审计证据链。完整中文说明见[README.zh-CN.md](README.zh-CN.md)。
 
-A self-contained Codex Skill for designing, executing, verifying, documenting, and packaging reproducible STEM research tests.
+A self-contained Codex Skill for building and auditing evidence chains around multi-stage STEM research tests.
 
-It is intended for scientific comparisons, simulation and model validation, physical experiments, observational-data analysis, parameter sweeps, sensitivity studies, and research workflow reviews. The Skill turns a research question into a traceable package linking inputs, configuration, execution records, intermediate transformations, results, figures, verification, and evidence-supported conclusions.
+It is designed for scientific comparisons, simulation and model validation, physical experiments, observational-data studies, parameter sweeps, sensitivity studies, and benchmarks that produce reusable artifacts. It does not turn ordinary explanations, one-off calculations, code edits, or plotting-only requests into heavyweight test packages.
 
-## Core capabilities
+## What it builds
 
-- Establishes an isolated test workspace with clear artifact responsibilities.
-- Fixes `task_plan.md`, `findings.md`, and `progress.md` as persistent records.
-- Requires a test contract before expensive or state-changing execution.
-- Distinguishes confirmed facts, proposals, unresolved questions, and scientific interpretations.
-- Supports Compact, Standard, and Extended workflow profiles.
-- Adds conditional guidance for computation, physical experiments, observational studies, parameter sweeps, method comparisons, and scientific visualization.
+```text
+source identity → test specification → frozen settings → execution record
+→ derived artifacts → machine-readable result → independent verification
+→ evidence ledger → scientific claim
+```
+
+Core capabilities:
+
+- Defines the scientific question, authoritative state, semantics, metrics, edge cases, thresholds, and excluded claims.
+- Preserves input identity, result-affecting settings, execution status, termination evidence, and artifact provenance.
 - Separates operational verification from scientific acceptance.
-- Preserves scripts, configuration, logs, manifests, checksums, and verification records.
-- Includes evidence-based scientific writing rules and separate guidance for technical README files.
+- Requires selected values or invariants to be checked independently of the final summary.
+- Links each substantive conclusion to verified evidence through an evidence ledger.
+- Retains generation and verification entry points instead of delivering orphan results.
+- Adds checksums, environment capture, logs, intermediates, resume fingerprints, and release controls only when the claim needs them.
+- Keeps technical reproduction instructions separate from reader-facing scientific prose.
 - Audits caches, large files, absolute paths, likely secrets, and release suitability without deleting files.
 
-The Skill has no dependency on planning-with-files, plotting Skills, MCP servers, or third-party Python packages. Its bundled utilities use the Python standard library.
+The bundled utilities use only the Python standard library.
+
+## Minimal evidence package
+
+```text
+test_workspace/
+├── README.md
+├── test_spec.md
+├── evidence_ledger.md
+├── scripts/
+├── results/
+└── records/
+```
+
+Add `inputs/`, `config/`, `intermediate/`, `figures/`, `logs/`, or `report/` only when the test needs those responsibilities. The initializer records the declared structure in `records/workspace_contract.json`; the validator checks that contract instead of enforcing unused directories.
 
 ## Repository layout
 
 ```text
 .
 ├── README.md
+├── README.zh-CN.md
 ├── LICENSE
 ├── skill/
 │   └── build-reproducible-research-tests/
@@ -37,20 +59,19 @@ The Skill has no dependency on planning-with-files, plotting Skills, MCP servers
 │       ├── references/
 │       └── scripts/
 └── examples/
-    └── compact-parameter-trend/
+    └── parameter-trend/
 ```
 
-The repository README and license remain outside the distributable Skill directory. This keeps the Skill package compatible with the standard Skill structure.
+The repository documentation, license, and worked example remain outside the distributable Skill directory.
 
 ## Installation
 
-Copy the Skill directory into the Codex Skills directory:
+Install from this repository with the Codex Skill installer, using:
 
-```bash
-cp -R skill/build-reproducible-research-tests "$CODEX_HOME/skills/"
-```
+- repository: `sleepyyancy/build-reproducible-research-tests`
+- path: `skill/build-reproducible-research-tests`
 
-Then invoke it explicitly:
+Then invoke:
 
 ```text
 $build-reproducible-research-tests
@@ -59,26 +80,26 @@ $build-reproducible-research-tests
 Example request:
 
 ```text
-Use $build-reproducible-research-tests to design a reproducible comparison between two numerical methods. Plan first, identify missing scientific decisions, and wait for approval before execution.
+Use $build-reproducible-research-tests to build an auditable comparison package for two numerical methods, including identified inputs, machine-readable results, independent verification, and evidence-linked conclusions.
 ```
 
 ## Bundled utilities
 
-The scripts use visible top-level configuration blocks rather than command-line arguments. Review and edit those blocks before execution.
+Edit each script's visible top-level configuration before use.
 
 | Script | Purpose |
 |---|---|
-| `init_test_workspace.py` | Create a non-destructive research-test workspace from templates |
-| `capture_environment.py` | Record environment facts without modifying the environment |
+| `init_test_workspace.py` | Create a minimal evidence package and only the optional components declared for the test |
+| `capture_environment.py` | Record reproducibility-relevant environment facts without changing the environment |
 | `build_artifact_manifest.py` | Inventory files and compute streaming SHA-256 hashes |
-| `validate_test_workspace.py` | Validate structure, placeholders, JSON records, and manifest identity |
+| `validate_test_workspace.py` | Validate declared artifacts, nonempty core responsibilities, JSON records, placeholders, and manifest identity |
 | `audit_publishability.py` | Report caches, large files, local paths, and likely sensitive content |
 
-These utilities provide generic structural and provenance checks. Every research test must still implement domain-specific semantic and numerical verification.
+These utilities provide structural and provenance checks. Every test still needs domain-specific semantic and numerical verification appropriate to its scientific claim.
 
-## Example
+## Worked example
 
-[`examples/compact-parameter-trend`](examples/compact-parameter-trend) is a small, fully reproducible parameter-trend test. It contains an immutable input table, a global-configuration analysis script, a machine-readable result, a verification report, and the three persistent planning files.
+[`examples/parameter-trend`](examples/parameter-trend) tests whether a measured response is strictly increasing over four ordered parameter values. It contains an immutable input, explicit test specification, evidence ledger, run record, machine-readable result, independent metric recomputation, artifact manifest, and verification report.
 
 Run it from the example directory:
 
@@ -86,21 +107,18 @@ Run it from the example directory:
 python scripts/analyze_and_verify.py
 ```
 
-## Safety model
-
-The workflow does not authorize package installation, environment changes, deletion, overwriting of important source files, external publication, or unsupported scientific claims. Material uncertainty is surfaced to the user before execution. Automated publication checks report risks and never delete artifacts.
-
 ## Validation
 
-The Skill passed the official Skill structure validator. Its five bundled scripts passed syntax checks and functional tests covering:
+The Skill passed the official structure validator. All five bundled scripts passed syntax and functional checks covering:
 
-- non-destructive initialization;
-- rejection of incomplete templates;
-- Compact, Standard, and Extended workspace validation;
+- minimal initialization without unused optional directories;
+- selective creation of declared optional components;
+- refusal to overwrite an existing package;
 - environment capture;
 - artifact hashing and manifest consistency;
+- contract-driven workspace validation;
 - publication-risk reporting;
-- final release audit with no blockers or warnings.
+- local Markdown-link and package-consistency checks.
 
 ## License
 

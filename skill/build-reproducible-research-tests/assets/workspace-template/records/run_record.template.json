@@ -10,7 +10,8 @@
   "resolved_config": "{{RELATIVE_CONFIG_PATH}}",
   "input_fingerprint": "{{FINGERPRINT}}",
   "code_fingerprint": "{{FINGERPRINT}}",
-  "environment_record": "records/environment.json",
+  "environment_record": "{{RELATIVE_ENVIRONMENT_RECORD_OR_NULL}}",
+  "termination_evidence": "{{RELATIVE_LOG_OR_STATUS_RECORD}}",
   "log": "{{RELATIVE_LOG_PATH}}",
   "outputs": ["{{RELATIVE_OUTPUT_PATH}}"],
   "notes": "{{NOTES}}"

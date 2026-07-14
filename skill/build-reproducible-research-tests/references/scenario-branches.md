@@ -1,57 +1,41 @@
-# Scenario branches
+# Scenario-specific evidence
 
-Apply the shared workflow in SKILL.md, then add only the relevant branch checks. A test may combine branches.
+Apply only the branch checks that affect the intended scientific claim.
 
 ## Computational simulation or learned-model inference
 
-- Record source revision or code hashes, configuration, model/checkpoint identity, hardware-relevant facts, numerical precision, library/runtime versions, and random seeds.
+- Record source revision or code fingerprint, resolved settings, model/checkpoint identity, numerical precision, relevant runtime/library versions, random seeds, and hardware facts when they affect results.
 - Validate mesh, grid, coordinate, index, channel, material, time-step, and boundary-condition semantics.
-- Estimate runtime, memory, accelerator, and disk use before large runs.
-- Capture stdout/stderr and solver termination status.
-- Treat convergence, completion, and physical validity as separate checks.
-- When resuming, compare a full fingerprint of inputs, code, configuration, model, and relevant environment.
-- For large arrays, prefer streaming reductions and compact derived fields. Retain raw fields only when they are irreplaceable or needed for the claim.
+- Capture stdout/stderr or equivalent termination evidence.
+- Treat completion, convergence, numerical validity, and physical validity as separate facts.
+- For large arrays, prefer streaming reductions and compact scientific fields; retain raw fields only when irreplaceable or required for verification.
 
 ## Physical experiment
 
-- Record apparatus identity, specimen/sample identity, calibration state, operator-relevant procedure version, ambient conditions, acquisition settings, and timestamps.
-- Define independent repeats separately from repeated readings of one specimen.
-- Preserve raw instrument output unchanged; perform corrections in a derived-data stage.
-- Record exclusions, failed runs, missing measurements, and protocol deviations before inspecting outcome-dependent conclusions.
-- Include uncertainty propagation and instrument resolution where they affect the claim.
-- Never infer an unrecorded experimental condition from a typical value.
+- Record apparatus, specimen/sample, calibration state, procedure version, ambient conditions, acquisition settings, operator-relevant facts, and timestamps.
+- Distinguish independent repeats from repeated readings of one specimen.
+- Preserve raw instrument output; apply corrections only in derived artifacts.
+- Record exclusions, failed runs, missing measurements, and protocol deviations before outcome-dependent interpretation.
+- Include instrument resolution and uncertainty propagation when they affect the claim.
 
 ## Observational or archival data analysis
 
-- Record source, retrieval date/version, license or access restrictions, query/filter logic, cohort/sample selection, missing-data handling, exclusions, and transformations.
-- Distinguish observed associations from causal claims.
-- Check duplicated entities, leakage across train/test or time boundaries, selection bias, and unit/schema changes.
-- Preserve the raw snapshot or an immutable source identifier and retrieval manifest.
-- If the source can change, cache or fingerprint the exact analyzed version when permitted.
+- Record source, retrieval date/version, license or access restrictions, query/filter logic, cohort or sample selection, exclusions, missing-data policy, and transformations.
+- Preserve the analyzed snapshot or an immutable source identifier and retrieval record.
+- Check duplicated entities, leakage across train/test or time boundaries, selection effects, and unit/schema changes.
+- Distinguish measured association from causal interpretation.
 
 ## Parameter sweep, sensitivity, or optimization study
 
-- Define the parameter space, sampling design, fixed parameters, constraints, seeds, failure policy, and stopping rule before execution.
-- Keep the parameter table as a first-class input and attach a unique case identifier to every artifact.
-- Test whether all intended combinations ran exactly once unless repetitions are designed.
-- Preserve failed parameter points and distinguish numerical failure from physically invalid configuration.
-- Avoid interpreting an optimum beyond the sampled domain or resolution.
+- Make the parameter table an identified input with one case ID per planned run.
+- Record the sampling design, fixed parameters, constraints, seeds, repetitions, failure policy, and stopping rule.
+- Verify planned-versus-completed coverage and preserve failed parameter points.
+- Distinguish execution failure from invalid physical or mathematical configuration.
+- Limit conclusions to the sampled domain and resolution.
 
 ## Benchmark or method comparison
 
-- Ensure the compared methods receive equivalent information and compatible preprocessing.
-- Separate method error from mapping, interpolation, normalization, or postprocessing error.
 - Identify the reference hierarchy: ground truth, trusted solver/instrument, accepted dataset, or relative comparison only.
-- Use identical subsets and aggregation rules across methods.
-- Report resource cost when the comparison claim includes efficiency.
-
-## Visualization branch
-
-Use when figures are part of evidence, not merely decoration.
-
-- Profile data types, sample sizes, missing values, distributions, outliers, groups, and correlations before choosing a chart.
-- Choose the chart to match the claim. Do not hide small-sample distributions behind mean-only bars, connect unordered categories, use dual axes without necessity, use rainbow maps, or truncate axes misleadingly.
-- Use colorblind-safe encoding and redundancy such as markers, line styles, labels, or direct annotation.
-- Generate a preview, run programmatic checks where possible, inspect the rendered image, correct issues, and rerender.
-- Verify text clipping, overlap, glyphs, tick density, units, legend mapping, panel alignment, and grayscale readability.
-- Derive plotted values from the same machine-readable tables used by the report; do not manually retype result numbers.
+- Ensure methods receive equivalent information, subsets, preprocessing, and aggregation.
+- Separate method error from mapping, interpolation, normalization, coarse-graining, and postprocessing error.
+- Record resource cost only when efficiency is part of the comparison claim.
